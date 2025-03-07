@@ -1,0 +1,31 @@
+.invoice-list {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+  }
+  
+  .invoice-list h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .invoice-item {
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .invoice-item:hover {
+    background-color: #f9f9f9;
+  }
+
+
+
+  .invoice-list .data-value-112 {
+    color: #007bff;
+    font-size: 1.2rem;
+    text-decoration: underline;
+  }

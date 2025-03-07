@@ -1,0 +1,16 @@
+.search-bar {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .search-bar input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 300px;
+  }

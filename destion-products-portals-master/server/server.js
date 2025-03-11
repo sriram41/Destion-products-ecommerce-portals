@@ -6,7 +6,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: 'https://sriram-khandavilli-destion-products-ecommerce-portals.vercel.app/login', credentials: true }));
+app.use(cors());
 
 
 

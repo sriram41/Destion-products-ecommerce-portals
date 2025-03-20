@@ -51,43 +51,100 @@
 
 
 
-const express = require("express");
-const router = express.Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User"); // Assuming you have a User model
+// const express = require("express");
+// const router = express.Router();
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+// const User = require("../models/User"); // Assuming you have a User model
 
-// Login route
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+// // Login route
+// router.post("/login", async (req, res) => {
+//   const { username, password } = req.body;
 
+//   try {
+//     // Check if the user exists
+//     const user = await User.findOne({ username });
+//     if (!user) {
+//       return res.status(400).json({ message: "User not found" });
+//     }
+
+//     // Validate password
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res.status(400).json({ message: "Invalid credentials" });
+//     }
+
+//     // Generate a token (if using JWT)
+//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+//       expiresIn: "1h",
+//     });
+
+//     // Send success response
+//     res.json({ success: true, token });
+//   } catch (error) {
+//     console.error("Login error:", error);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// });
+
+// module.exports = router;
+
+
+const login = async (username, password) => {
   try {
-    // Check if the user exists
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(400).json({ message: "User not found" });
+    console.log("Sending login request..."); // Debugging
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      }
+    );
+
+    console.log("Login response:", response); // Debugging
+    const data = await response.json();
+    console.log("Login data:", data); // Debugging
+
+    if (response.ok) {
+      localStorage.setItem("token", data.token);
+      setIsAuthenticated(true);
+      return { success: true };
+    } else {
+      return { success: false, message: data.message };
     }
-
-    // Validate password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
-    }
-
-    // Generate a token (if using JWT)
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    // Send success response
-    res.json({ success: true, token });
   } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Login error:", error); // Debugging
+    return { success: false, message: "An error occurred. Please try again." };
   }
-});
+};
 
-module.exports = router;
+const signup = async (username, password) => {
+  try {
+    console.log("Sending signup request..."); // Debugging
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      }
+    );
+
+    console.log("Signup response:", response); // Debugging
+    const data = await response.json();
+    console.log("Signup data:", data); // Debugging
+
+    if (response.ok) {
+      return { success: true };
+    } else {
+      return { success: false, message: data.message };
+    }
+  } catch (error) {
+    console.error("Signup error:", error); // Debugging
+    return { success: false, message: "An error occurred. Please try again." };
+  }
+};
 
 
 

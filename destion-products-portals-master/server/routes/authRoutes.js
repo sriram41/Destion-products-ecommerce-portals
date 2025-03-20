@@ -90,6 +90,63 @@
 // module.exports = router;
 
 
+// const login = async (username, password) => {
+//   try {
+//     console.log("Sending login request..."); // Debugging
+//     const response = await fetch(
+//       `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+//       {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ username, password }),
+//       }
+//     );
+
+//     console.log("Login response:", response); // Debugging
+//     const data = await response.json();
+//     console.log("Login data:", data); // Debugging
+
+//     if (response.ok) {
+//       localStorage.setItem("token", data.token);
+//       setIsAuthenticated(true);
+//       return { success: true };
+//     } else {
+//       return { success: false, message: data.message };
+//     }
+//   } catch (error) {
+//     console.error("Login error:", error); // Debugging
+//     return { success: false, message: "An error occurred. Please try again." };
+//   }
+// };
+
+// const signup = async (username, password) => {
+//   try {
+//     console.log("Sending signup request..."); // Debugging
+//     const response = await fetch(
+//       `${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`,
+//       {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ username, password }),
+//       }
+//     );
+
+//     console.log("Signup response:", response); // Debugging
+//     const data = await response.json();
+//     console.log("Signup data:", data); // Debugging
+
+//     if (response.ok) {
+//       return { success: true };
+//     } else {
+//       return { success: false, message: data.message };
+//     }
+//   } catch (error) {
+//     console.error("Signup error:", error); // Debugging
+//     return { success: false, message: "An error occurred. Please try again." };
+//   }
+// };
+
+
 const login = async (username, password) => {
   try {
     console.log("Sending login request..."); // Debugging
@@ -145,6 +202,5 @@ const signup = async (username, password) => {
     return { success: false, message: "An error occurred. Please try again." };
   }
 };
-
 
 

@@ -147,6 +147,18 @@
 // };
 
 
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
+const router = express.Router();
+
+// In-memory user storage (No database)
+const users = [];
+
+
+
 const login = async (username, password) => {
   try {
     console.log("Sending login request..."); // Debugging
@@ -203,4 +215,4 @@ const signup = async (username, password) => {
   }
 };
 
-
+module.exports = router;

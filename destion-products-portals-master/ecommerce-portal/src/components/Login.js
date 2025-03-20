@@ -19,16 +19,41 @@ function Login() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   const result = await login(credentials.username, credentials.password);
+  //   if (result.success) {
+  //     navigate("/"); // Redirect to InvoiceList after login
+  //   } else {
+  //     setError(result.message);
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    const result = await login(credentials.username, credentials.password);
-    if (result.success) {
-      navigate("/"); // Redirect to InvoiceList after login
+  e.preventDefault();
+  setError("");
+  try {
+    const response = await fetch("https://sriram-khandavilli-destion-products.onrender.com/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      login(data.token); // Assuming your backend returns a token
+      navigate("/");
     } else {
-      setError(result.message);
+      setError(data.message || "Login failed");
     }
-  };
+  } catch (error) {
+    setError("An error occurred. Please try again.");
+  }
+};
+  
 
   return (
     <div className="login-container">

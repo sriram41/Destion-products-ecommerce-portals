@@ -5,12 +5,12 @@ import "./InvoiceList.css"
 import { Link } from "react-router-dom";
 
 
-useEffect(() => {
-  fetch(`${process.env.REACT_APP_BACKEND_URL}/api/invoices`)
-    .then((response) => response.json())
-    .then((data) => setInvoices(data))
-    .catch((error) => console.error("Error fetching invoices:", error));
-}, []);
+// useEffect(() => {
+//   fetch(`${process.env.REACT_APP_BACKEND_URL}/api/invoices`)
+//     .then((response) => response.json())
+//     .then((data) => setInvoices(data))
+//     .catch((error) => console.error("Error fetching invoices:", error));
+// }, []);
 
 
 

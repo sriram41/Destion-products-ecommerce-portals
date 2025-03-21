@@ -13,41 +13,16 @@ function Signup() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   const result = await signup(credentials.username, credentials.password);
-  //   if (result.success) {
-  //     navigate("/login");
-  //   } else {
-  //     setError(result.message);
-  //   }
-  // };
-
-
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
-  try {
-    const response = await fetch("https://sriram-khandavilli-destion-products.onrender.com/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-    const data = await response.json();
-    if (response.ok) {
+    e.preventDefault();
+    setError("");
+    const result = await signup(credentials.username, credentials.password);
+    if (result.success) {
       navigate("/login");
     } else {
-      setError(data.message || "Signup failed");
+      setError(result.message);
     }
-  } catch (error) {
-    setError("An error occurred. Please try again.");
-  }
-};
-  
+  };
 
   return (
     <div className="signup-container">

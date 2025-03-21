@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { invoices } from "../data";
 import InvoiceDetail from "./InvoiceDetail";
 import "./InvoiceList.css"
 import { Link } from "react-router-dom";
-
-
-// useEffect(() => {
-//   fetch(`${process.env.REACT_APP_BACKEND_URL}/api/invoices`)
-//     .then((response) => response.json())
-//     .then((data) => setInvoices(data))
-//     .catch((error) => console.error("Error fetching invoices:", error));
-// }, []);
-
 
 
 const InvoiceList = () => {
